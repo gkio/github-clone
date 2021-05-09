@@ -6,7 +6,6 @@ import { usePrevious } from '../usePrevious';
 import deepEqual from 'deep-equal';
 
 export const octokit = new Octokit({
-  auth: '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',
   baseUrl: API_URL,
 });
 

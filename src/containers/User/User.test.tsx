@@ -54,7 +54,7 @@ jest.mock('react-router-dom', () => ({
   }),
 }));
 
-test('renders bakc to Home btn', async () => {
+test('renders back to Home btn', async () => {
   render(<User />);
   const button = await screen.getByText('Go To Home Page');
   expect(button).toBeInTheDocument();
