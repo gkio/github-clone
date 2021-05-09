@@ -71,7 +71,7 @@ const Repo = () => {
               className={classnames('border m-1 p-1', {
                 'cur-pointer': isDirectory(file.type),
               })}
-              key={file.sha}
+              key={file.name}
             >
               {isDirectory(file.type) ? <FileDirectoryIcon className="color-icon-info" /> : <FileIcon />}
               <span className="ml-2">{file.name}</span>
