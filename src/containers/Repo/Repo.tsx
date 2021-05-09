@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useGithubApi } from '../../shared/hooks';
 import { GITHUB_PATHS } from '../../shared/constants';
 import { useHistory } from 'react-router-dom';
@@ -29,6 +29,14 @@ const Repo = () => {
     }
   );
 
+  const repoFiles = useMemo(
+    () =>
+      (files || []).sort(({ type }: File) =>
+        type === FILE_TYPES.DIR ? -1 : 1
+      ),
+    [files]
+  );
+
   const goBack = useCallback(() => {
     const {
       location: { pathname },
@@ -45,34 +53,30 @@ const Repo = () => {
     [history]
   );
 
+  const isDirectory = (type: string) => type === FILE_TYPES.DIR;
+
   return (
     <>
       <button className="btn m-2" onClick={goBack}>
         Go Back
       </button>
       {error && <div className="flash mt-3 flash-error">{error}</div>}
-      {files && files.length && (
+      {repoFiles && repoFiles.length && (
         <ul className="repo Box Box--overlay overflow-scroll m-3 p-1">
-          {files
-            .sort(({ type }: File) => (type === FILE_TYPES.DIR ? -1 : 1))
-            .map((file: File) => (
-              <li
-                onClick={() =>
-                  file.type === FILE_TYPES.DIR ? goToDirectory(file.name) : null
-                }
-                className={classnames('border m-1 p-1', {
-                  'cur-pointer': file.type === FILE_TYPES.DIR,
-                })}
-                key={file.sha}
-              >
-                {file.type === FILE_TYPES.DIR ? (
-                  <FileDirectoryIcon />
-                ) : (
-                  <FileIcon />
-                )}
-                <span className="ml-2">{file.name}</span>
-              </li>
-            ))}
+          {repoFiles.map((file: File) => (
+            <li
+              onClick={() =>
+                isDirectory(file.type) ? goToDirectory(file.name) : null
+              }
+              className={classnames('border m-1 p-1', {
+                'cur-pointer': isDirectory(file.type),
+              })}
+              key={file.sha}
+            >
+              {isDirectory(file.type) ? <FileDirectoryIcon /> : <FileIcon />}
+              <span className="ml-2">{file.name}</span>
+            </li>
+          ))}
         </ul>
       )}
     </>
