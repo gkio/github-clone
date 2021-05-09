@@ -21,7 +21,7 @@ const Home = () => {
       getUsers({
         query: searchQuery,
         page: 1,
-        per_page: 5,
+        per_page: 10,
       });
     }
   }, [searchQuery, getUsers]);
@@ -62,6 +62,9 @@ const Home = () => {
               </li>
             ))}
           </ul>
+        )}
+        {users.data && users.data.items && users.data.items.length === 0 && (
+            <div className="text-center m-2">No match found</div>
         )}
       </div>
     </>

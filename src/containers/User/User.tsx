@@ -36,6 +36,7 @@ const User = () => {
       </button>
       {error && <div className="flash mt-3 flash-error">User: {error}</div>}
       {user && <Profile user={user} />}
+      {repos && repos.length === 0 && <div className="flash p-1 m-3">No repos</div>}
       {repos && Boolean(repos.length) && (
         <>
           <h3 className="mt-5">Public Repos:</h3>

@@ -73,7 +73,7 @@ const Repo = () => {
               })}
               key={file.sha}
             >
-              {isDirectory(file.type) ? <FileDirectoryIcon /> : <FileIcon />}
+              {isDirectory(file.type) ? <FileDirectoryIcon className="color-icon-info" /> : <FileIcon />}
               <span className="ml-2">{file.name}</span>
             </li>
           ))}

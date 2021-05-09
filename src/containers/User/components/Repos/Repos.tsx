@@ -34,15 +34,15 @@ const Repos = ({ repos, gotoRepo }: IReposProps) => {
               <span className="ml-2">{repo.name}</span>
             </div>
             <div className="d-flex flex-items-center">
-              <div className="m-2">
+              <div className="m-2 color-text-link">
                 <GitForkIcon />
                 <span className="ml-1">{repo.forks_count}</span>
               </div>
-              <div className="mr-2">
+              <div className="mr-2 color-text-success ">
                 <StarIcon />
                 <span className="ml-1">{repo.stargazers_count}</span>
               </div>
-              <div className="mr-2">
+              <div className="mr-2 color-text-warning">
                 <EyeIcon />
                 <span className="ml-1">{repo.watchers_count}</span>
               </div>
