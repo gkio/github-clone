@@ -6,7 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Before usage install all the dependencies
 ### `npm i`
 
-developers on `node v14.16.1` and `npm v6.14.12`
+developed on `node v14.16.1` and `npm v6.14.12`
 
 ## Available Scripts
 
